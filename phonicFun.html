@@ -4,10 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/normalize.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css" />
     <title>Phonic Fun</title>
 </head>
 <body>
+    <div class="container">
+        <header class="row">
+            <div class="col-6 offset-3 offset-md-0">
+                <h1>Phonic Fun</h1>                
+            </div>
+        </header>
+
+        <div class="row">
+            <div class="col-8 offset-2 offset-md-0">
+                <h2>Challenge Yourself with Letters !</h2>                
+            </div>
+        </div>
     
+        <main>
+            <div class="row" id="section-1">                
+
+                <div class="col-md-5" id="scoresletter">
+                    <div class="playerA"> Player A Score</div>                
+                </div>
+
+                <div class="col-md-2" id="randomSound">
+                    <img src="img/sound.svg" alt="">
+                    <audio id="audioContainer" type="hidden"></audio>
+                </div>
+
+                <div class="col-md-5" id="scoresletter">
+                    <div class="playerB">Player B Score</div>                
+                </div>
+                
+                </div>
+            </div>
+
+            <div class="row" id="section-2">
+                <div class="col-10 offset-1 offset-md-0" id="letters-box">
+                    <div class="letters">letter 1</div>
+                    <div class="letters">letter 2</div>
+                    <div class="letters">letter 3</div>
+                    <div class="letters">letter 4</div>
+                    <div class="letters">letter 5</div>
+                    <div class="letters">letter 6</div>
+                </div>
+            </div>
+
+        </main>
+
+        <div class="row">
+            <div class="col-4 offset-4 offset-md-0">
+                <div class="nextRound">Time for the Next Round</div>                
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-4 offset-4 offset-md-0">
+                <div class="resetGame">Reset the Game</div>                
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="scripts/app.js"></script>
 </body>
 </html>
