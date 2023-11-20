@@ -7,4 +7,48 @@
 .letters {
     background-color: #f0f0f0;
     padding: 20px;
+    width: 100px;
+    height: 100px; 
+
+}
+
+.container{
+    text-align:center;
+}
+
+div.letters, div.nextRound, div.resetGame{
+    text-align: center;
+}
+
+#randomSound img{
+    width:30%;
+    display:block;
+}
+
+div#randomSound.col-md-2{
+display:flex;
+justify-content:center}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+
+#letters-box {
+        display: flex;
+        justify-content: center;
+        padding: 50px;
+}
+
+#scoresletter div{
+    padding: 15px;
 }
