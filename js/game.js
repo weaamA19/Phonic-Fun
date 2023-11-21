@@ -1,15 +1,16 @@
 document.addEventListener('DOMContentLoaded', function(event) {
 
 
-// Breakdown javaScript
+    // Breakdown javaScript
 
-// Set the Initial Variables
-let round = 1; //round number
-let previousPhonic=[];
-let selectedPhonic;
-let scoreA;
-let scoreB;
-let currentPlayer = "A"; // Starting player
+    // Set the Initial Variables
+    let round = 1; //round number
+    let previousPhonic=[];
+    let selectedPhonic;
+    let correctAnswer=false;
+    let scoreA=0;
+    let scoreB=0;
+    let currentPlayer = "A"; // Starting player
 
     //About the Sounds:
     //listen to the user click
@@ -161,23 +162,21 @@ let currentPlayer = "A"; // Starting player
         console.log(currentPhonic);
 
         // use Object.values to obtain the random phonic-'' values in array 
-        let phoincXValues= Object.values(dataSet.randomSound[currentPhonic]);
-        console.log(phoincXValues);
+        let phoincValues= Object.values(dataSet.randomSound[currentPhonic]);
+        console.log(phoincValues);
 
         //Always access [1] of the array 
-        let selectLetterValue = phoincXValues[1];
-        console.log(selectLetterValue);
+        let correctAnswer = phoincValues[1];
+        console.log(correctAnswer);
+
+        if (clickedContent == correctAnswer) {
+           correctAnswer=true;
+        } else {
+            correctAnswer=false;
+        }
+        console.log(correctAnswer);
         
-
-        // // let test=Object.values(dataSet.randomSound[selectedPhonic]);
-        // //        console.log(test);
-        // let correctAnswer= Object.values(dataSet.randomSound[selectedPhonic["correctAnswer"]]); 
-        // console.log(correctAnswer);
-    
-        // if (userSelect == correctAnswer) {
-        //     scoreA++;
-        // }
-
+        scores ();
         // // Update currentPlayer
         // currentPlayer = (currentPlayer === "A") ? "B" : "A";
 
@@ -185,8 +184,33 @@ let currentPlayer = "A"; // Starting player
         // toggleCurrentPlayer(); //dynamically add/remove a class 
     }
     
+    //About the Scores: 
+    function scores (){
 
-    
+        // Access the scores containers 
+        let scoreA_Container = document.querySelector(".scoreA");
+        let scoreB_Container = document.querySelector(".scoreB");
+        
+        // If the player selected the right letter option --> Get one point.
+        if (correctAnswer=true){    
+            if (currentPlayer="A"){
+                scoreA+=1;
+            }
+            else {
+                scoreB+=1;
+            }
+        }
+        // Instantly increment and fill in the current score
+        //Displaying Scores
+        let contentA = document.createTextNode(scoreA);
+        let contentB = document.createTextNode(scoreB);
+        scoreA_Container.appendChild(contentA)
+        scoreB_Container.appendChild(contentB)
+        // After 6 sounds played, compare the scores and annouce the winner 
+
+        // Store the previous round's score 
+        // Add logic to add the previous round's score
+    }    
 
 
     // Function to toggle the current player class
@@ -198,12 +222,7 @@ let currentPlayer = "A"; // Starting player
         playerBDiv.classList.toggle("currentPlayer");
     }
 
-    //About the Scores: 
-    // If the player selected the right letter option --> Get one point.
-    // Instantly increment and fill in the current score
-    // Store the previous round's score 
-    // Add logic to add the previous round's score
-    // After 6 sounds played, compare the scores and annouce the winner 
+
 
     //About Game Reset 
     //clear letters
