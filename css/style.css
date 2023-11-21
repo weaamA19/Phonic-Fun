@@ -52,3 +52,27 @@ body{
 #scoresletter div{
     padding: 15px;
 }
+
+audio{
+    display:none;
+}
+
+.currentPlayer {
+    /* Define styles for the current player's div */
+    background-color: yellow;
+    animation-name: pop;
+    animation-duration: 0.5s;
+    animation-iteration-count: 2;
+}
+
+@keyframes pop {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+}
