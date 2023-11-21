@@ -59,6 +59,9 @@ let currentPlayer = "A"; // Starting player
         
         // Play the audio
         audioElement.play();
+
+        // //to be access by the other functions
+        // return selectedPhonic;
     }
 
 
@@ -143,29 +146,43 @@ let currentPlayer = "A"; // Starting player
         letter.addEventListener('click', checkAnswer)
     });
 
+    
     function checkAnswer(element) {
         //Get the content of the object clicked on
         let clickedContent = element.target.textContent;
-        
         console.log(clickedContent); 
-
-        let userSelect=userInput.textContent;
 
         //Get the correct answer
         let datasetKey = "round"+round;
         let dataSet = phonicData[datasetKey];
-        let correctAnswer= Object.values(dataSet.randomSound[selectedPhonic[1]]); 
-        console.log(correctAnswer);
+
+        // obtain the random selected phonic 
+        let currentPhonic = selectedPhonic;
+        console.log(currentPhonic);
+
+        // use Object.values to obtain the random phonic-'' values in array 
+        let phoincXValues= Object.values(dataSet.randomSound[currentPhonic]);
+        console.log(phoincXValues);
+
+        //Always access [1] of the array 
+        let selectLetterValue = phoincXValues[1];
+        console.log(selectLetterValue);
+        
+
+        // // let test=Object.values(dataSet.randomSound[selectedPhonic]);
+        // //        console.log(test);
+        // let correctAnswer= Object.values(dataSet.randomSound[selectedPhonic["correctAnswer"]]); 
+        // console.log(correctAnswer);
     
-        if (userSelect == correctAnswer) {
-            scoreA++;
-        }
+        // if (userSelect == correctAnswer) {
+        //     scoreA++;
+        // }
 
-        // Update currentPlayer
-        currentPlayer = (currentPlayer === "A") ? "B" : "A";
+        // // Update currentPlayer
+        // currentPlayer = (currentPlayer === "A") ? "B" : "A";
 
-        // Toggle the current player class
-        toggleCurrentPlayer(); //dynamically add/remove a class 
+        // // Toggle the current player class
+        // toggleCurrentPlayer(); //dynamically add/remove a class 
     }
     
 
