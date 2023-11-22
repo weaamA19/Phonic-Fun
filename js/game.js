@@ -18,16 +18,20 @@ document.addEventListener('DOMContentLoaded', function(event) {
     let playerBDiv = document.querySelector("#playerB");
     
     function player () {
+        console.log("Player called")
         if (currentPlayer == "A"){
+            console.log("currentPlayer", currentPlayer)
             playerADiv.classList.add("currentPlayer");
             playerBDiv.classList.remove("currentPlayer");
         }
         else {
+            console.log("currentPlayer", currentPlayer)
             playerBDiv.classList.add("currentPlayer");
             playerADiv.classList.remove("currentPlayer");  
         }
     }
-
+    //To add animation once the function is loaded 
+    console.log(answerIsSelected)
     if (answerIsSelected==false){
         player();
     }
@@ -82,8 +86,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
         // Play the audio
         audioElement.play();
 
-        // //to be access by the other functions
-        // return selectedPhonic;
+        
+        //Adding animation indecating the current player once the sound image is clicked
+        player()
     }
 
 
@@ -164,10 +169,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     //add event to check if the user clicked any button 
     document.querySelectorAll('#letters-box .letters').forEach(function(letter){
-        letter.addEventListener('click', function(){
-        answerIsSelected = true; 
-        checkAnswer();
-    });
+        letter.addEventListener('click', checkAnswer)
     });
 
     function checkAnswer(element) {
@@ -193,11 +195,15 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
         if (clickedContent == correctAnswer) {
            correctAnswer=true;
+           console.log(currentPlayer);
+
         } else {
             correctAnswer=false;
+            console.log(currentPlayer);
+
         }
         console.log(correctAnswer);
-        
+        answerIsSelected = false; 
         scores (correctAnswer);
     }
 

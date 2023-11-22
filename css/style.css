@@ -61,8 +61,8 @@ audio{
     /* Define styles for the current player's div */
     background-color: yellow;
     animation-name: pop;
-    animation-duration: 15s;
-    animation-iteration-count: 2;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
 }
 
 @keyframes pop {
