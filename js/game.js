@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     let scoreB=0;
     let currentPlayer = "A"; // Starting player
     let answerIsSelected = false; 
-    let currentTrial=0;
+    let questionNumber=0;
+    let roundWinner="";
 
     // Function to toggle the current player class
     let playerADiv = document.querySelector("#playerA");
@@ -32,15 +33,31 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     //To add animation once the function is loaded  
     addingPlayerAnimation();
-    
-    
+
+    //Display the initial value of the Question Numbers
+    numberQuestion()
+
+    //Tracking Question Number 
+    function numberQuestion(){
+        //Displaying the Question Number
+        let trialcontainer = document.querySelector("#questionNumber h4");
+
+        // Clear the existing content of the trialcontainer
+        trialcontainer.innerHTML = "";
+        
+        //Adding current trial number
+        let question= document.createTextNode("Question Number " + questionNumber + "/6");
+        trialcontainer.appendChild(question);
+    }
+
     //About the Sounds:
     //listen to the user click
     const soundGenerator = document.getElementById("generateSound");
     soundGenerator.addEventListener("click", phonicGenerator);
 
-    function phonicGenerator(){
+    console.log("qn"+questionNumber);
 
+    function phonicGenerator(){
         // New question
         answerIsSelected = false;
 
@@ -56,8 +73,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
         //To avoid selecting previous Phonic a while loop was used 
         //add condition to ensure after 6 sounds played it alters "Round Ended"
             if (previousPhonic.length < 6){
-                generateRandomPhonic(obtainKeys); }
+                generateRandomPhonic(obtainKeys); 
 
+                //Question Number
+                questionNumber += 1;
+                console.log("qn"+questionNumber); 
+            }
             else {
                 playerBDiv.classList.remove("currentPlayer");
                 playerADiv.classList.remove("currentPlayer");  
@@ -88,14 +109,19 @@ document.addEventListener('DOMContentLoaded', function(event) {
         
         // Play the audio
         audioElement.play();
-        console.log("L="+previousPhonic.length)
-        
+
         //Adding animation indecating the current player once the sound image is clicked
         addingPlayerAnimation() 
+
+        //Display Question Number
+        numberQuestion();
         
 
-
     }
+
+    console.log("qn"+questionNumber);
+
+
 
 
     function generateRandomPhonic(obtainKeys) {
@@ -162,8 +188,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     function roundNumber() {
         let roundNumber = document.querySelector("#roundNumber h3");
     
-        //Adding current trial number
-        let currentRound= document.createTextNode("Round #" + round);
+        //Adding current round number
+        let currentRound= document.createTextNode("Round # " + round);
         roundNumber.appendChild(currentRound);
     }
     
@@ -263,13 +289,16 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }
     }
 
-    let roundwinner="";
     function annouceWinner() {
         //compare the scores and annouce the winner 
         if (scoreA > scoreB){
-
+            roundWinner ="A";
         }
-        return roundwinner;
+        else {
+            roundWinner ="B";
+        }
+
+        return console.log(roundwinner);
     }
 
     //About Game Reset 
