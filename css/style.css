@@ -16,7 +16,7 @@
     text-align:center;
 }
 
-div.letters, div.nextRound, div.resetGame{
+div.letters, div.nextRound, #resetGame{
     text-align: center;
 }
 
@@ -61,7 +61,7 @@ audio{
     /* Define styles for the current player's div */
     background-color: yellow;
     animation-name: pop;
-    animation-duration: 0.5s;
+    animation-duration: 15s;
     animation-iteration-count: 2;
 }
 

@@ -11,7 +11,28 @@ document.addEventListener('DOMContentLoaded', function(event) {
     let scoreA=0;
     let scoreB=0;
     let currentPlayer = "A"; // Starting player
+    let answerIsSelected = false; 
 
+    // Function to toggle the current player class
+    let playerADiv = document.querySelector("#playerA");
+    let playerBDiv = document.querySelector("#playerB");
+    
+    function player () {
+        if (currentPlayer == "A"){
+            playerADiv.classList.add("currentPlayer");
+            playerBDiv.classList.remove("currentPlayer");
+        }
+        else {
+            playerBDiv.classList.add("currentPlayer");
+            playerADiv.classList.remove("currentPlayer");  
+        }
+    }
+
+    if (answerIsSelected==false){
+        player();
+    }
+            
+    
     //About the Sounds:
     //listen to the user click
     const soundGenerator = document.getElementById("generateSound");
@@ -143,11 +164,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     //add event to check if the user clicked any button 
     document.querySelectorAll('#letters-box .letters').forEach(function(letter){
-        console.log("event");
-        letter.addEventListener('click', checkAnswer)
+        letter.addEventListener('click', function(){
+        answerIsSelected = true; 
+        checkAnswer();
+    });
     });
 
-    
     function checkAnswer(element) {
         //Get the content of the object clicked on
         let clickedContent = element.target.textContent;
@@ -166,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         console.log(phoincValues);
 
         //Always access [1] of the array 
-        let correctAnswer = phoincValues[1];
+        correctAnswer = phoincValues[1];
         console.log(correctAnswer);
 
         if (clickedContent == correctAnswer) {
@@ -176,58 +198,72 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }
         console.log(correctAnswer);
         
-        scores ();
-        // // Update currentPlayer
-        // currentPlayer = (currentPlayer === "A") ? "B" : "A";
-
-        // // Toggle the current player class
-        // toggleCurrentPlayer(); //dynamically add/remove a class 
+        scores (correctAnswer);
     }
-    
+
     //About the Scores: 
-    function scores (){
+    function scores (correctAnswer){
 
         // Access the scores containers 
         let scoreA_Container = document.querySelector(".scoreA");
         let scoreB_Container = document.querySelector(".scoreB");
         
-        // If the player selected the right letter option --> Get one point.
-        if (correctAnswer=true){    
-            if (currentPlayer="A"){
-                scoreA+=1;
-            }
-            else {
-                scoreB+=1;
+        // Track the player score and after the game ends annouce the winner
+        if (previousPhonic.length <= 6){
+            console.log(correctAnswer)
+            if (correctAnswer==true){    
+                if (currentPlayer=="A"){
+                    console.log(currentPlayer);
+                    scoreA+=1;
+                }
+                else {
+                    console.log(currentPlayer);
+                    scoreB+=1;
+                }
             }
         }
-        // Instantly increment and fill in the current score
-        //Displaying Scores
-        let contentA = document.createTextNode(scoreA);
-        let contentB = document.createTextNode(scoreB);
-        scoreA_Container.appendChild(contentA)
-        scoreB_Container.appendChild(contentB)
-        // After 6 sounds played, compare the scores and annouce the winner 
+        else {
+            annouceWinner(); 
+        }
+
+        // Instantly Display the Scores
+        scoreA_Container.textContent = scoreA;
+        scoreB_Container.textContent = scoreB;
+
+        // Switch to the other player
+        currentPlayer = switchPlayer(currentPlayer);
 
         // Store the previous round's score 
         // Add logic to add the previous round's score
     }    
 
 
-    // Function to toggle the current player class
-    let playerADiv = document.querySelector("#playerA");
-    let playerBDiv = document.querySelector("#playerB");
-    
-    function toggleCurrentPlayer() {
-        playerADiv.classList.toggle("currentPlayer");
-        playerBDiv.classList.toggle("currentPlayer");
+
+    function switchPlayer(current){
+        if (current === "A"){
+            return "B"
+        }
+        else{
+            return "A"
+        }
     }
 
+    let roundwinner="";
+    function annouceWinner() {
+        //compare the scores and annouce the winner 
+        if (scoreA > scoreB){
 
+        }
+        return roundwinner;
+    }
 
     //About Game Reset 
-    //clear letters
-    //clear scores
-    //recall play function
+    //clear letters/scores OR Simply Refresh It ! 
+    document.getElementById("resetGame").addEventListener("click", resetGame);
+    function resetGame(){
+        window.location.reload();
+    }
+
 
     //About Next Game
     //clear letters
