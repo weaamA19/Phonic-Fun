@@ -12,30 +12,27 @@ document.addEventListener('DOMContentLoaded', function(event) {
     let scoreB=0;
     let currentPlayer = "A"; // Starting player
     let answerIsSelected = false; 
+    let currentTrial=0;
 
     // Function to toggle the current player class
     let playerADiv = document.querySelector("#playerA");
     let playerBDiv = document.querySelector("#playerB");
     
-    function player () {
-        console.log("Player called")
+    function addingPlayerAnimation () {
+        console.log("cp="+currentPlayer)
         if (currentPlayer == "A"){
-            console.log("currentPlayer", currentPlayer)
             playerADiv.classList.add("currentPlayer");
             playerBDiv.classList.remove("currentPlayer");
         }
         else {
-            console.log("currentPlayer", currentPlayer)
             playerBDiv.classList.add("currentPlayer");
             playerADiv.classList.remove("currentPlayer");  
         }
     }
-    //To add animation once the function is loaded 
-    console.log(answerIsSelected)
-    if (answerIsSelected==false){
-        player();
-    }
-            
+
+    //To add animation once the function is loaded  
+    addingPlayerAnimation();
+    
     
     //About the Sounds:
     //listen to the user click
@@ -43,6 +40,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
     soundGenerator.addEventListener("click", phonicGenerator);
 
     function phonicGenerator(){
+
+        // New question
+        answerIsSelected = false;
 
         //Get the dataset of the current round
             let datasetKey = "round"+round;
@@ -59,7 +59,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 generateRandomPhonic(obtainKeys); }
 
             else {
-                alert("The Round has Ended"); 
+                playerBDiv.classList.remove("currentPlayer");
+                playerADiv.classList.remove("currentPlayer");  
+                            alert("The Round has Ended"); 
+
                 return;
             }
         
@@ -85,10 +88,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
         
         // Play the audio
         audioElement.play();
-
+        console.log("L="+previousPhonic.length)
         
         //Adding animation indecating the current player once the sound image is clicked
-        player()
+        addingPlayerAnimation() 
+        
+
+
     }
 
 
@@ -150,14 +156,15 @@ document.addEventListener('DOMContentLoaded', function(event) {
         // // Call the callback function once the elements are loaded
         // callback();
     }
+    console.log(previousPhonic.length);
 
     //Displaying the round number
     function roundNumber() {
-    let roundNumber = document.querySelector("#roundNumber h3");
-
-    //Adding letter choice 
-    let currentRound = document.createTextNode("Round #" + round);
-    roundNumber.appendChild(currentRound);
+        let roundNumber = document.querySelector("#roundNumber h3");
+    
+        //Adding current trial number
+        let currentRound= document.createTextNode("Round #" + round);
+        roundNumber.appendChild(currentRound);
     }
     
     roundNumber();
@@ -173,42 +180,44 @@ document.addEventListener('DOMContentLoaded', function(event) {
     });
 
     function checkAnswer(element) {
-        //Get the content of the object clicked on
-        let clickedContent = element.target.textContent;
-        console.log(clickedContent); 
+        if(answerIsSelected==false){
+            //Get the content of the object clicked on
+            let clickedContent = element.target.textContent;
+            console.log(clickedContent); 
 
-        //Get the correct answer
-        let datasetKey = "round"+round;
-        let dataSet = phonicData[datasetKey];
+            //Get the correct answer
+            let datasetKey = "round"+round;
+            let dataSet = phonicData[datasetKey];
 
-        // obtain the random selected phonic 
-        let currentPhonic = selectedPhonic;
-        console.log(currentPhonic);
+            // obtain the random selected phonic 
+            let currentPhonic = selectedPhonic;
+            console.log(currentPhonic);
 
-        // use Object.values to obtain the random phonic-'' values in array 
-        let phoincValues= Object.values(dataSet.randomSound[currentPhonic]);
-        console.log(phoincValues);
+            // use Object.values to obtain the random phonic-'' values in array 
+            let phoincValues= Object.values(dataSet.randomSound[currentPhonic]);
+            console.log(phoincValues);
 
-        //Always access [1] of the array 
-        correctAnswer = phoincValues[1];
-        console.log(correctAnswer);
+            //Always access [1] of the array 
+            correctAnswer = phoincValues[1];
+            console.log(correctAnswer);
 
-        if (clickedContent == correctAnswer) {
-           correctAnswer=true;
-           console.log(currentPlayer);
-
-        } else {
-            correctAnswer=false;
+            if (clickedContent == correctAnswer) {
+            correctAnswer=true;
             console.log(currentPlayer);
 
+            } else {
+                correctAnswer=false;
+                console.log(currentPlayer);
+            }
+
+            console.log(correctAnswer);
+            answerIsSelected = true; 
+            scores(correctAnswer);
         }
-        console.log(correctAnswer);
-        answerIsSelected = false; 
-        scores (correctAnswer);
     }
 
     //About the Scores: 
-    function scores (correctAnswer){
+    function scores(correctAnswer){
 
         // Access the scores containers 
         let scoreA_Container = document.querySelector(".scoreA");
