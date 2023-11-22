@@ -76,3 +76,10 @@ audio{
       transform: scale(1);
     }
 }
+
+.modal-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

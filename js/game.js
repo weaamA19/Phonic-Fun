@@ -1,5 +1,15 @@
 document.addEventListener('DOMContentLoaded', function(event) {
 
+    //Uitlizing Modal to: 1- Welcome User 2-Call the playGame function
+    let welcomingModal = new bootstrap.Modal(document.getElementById("welcomingModal"));
+    welcomingModal.show();
+
+    let startGame = document.getElementById("startGame");
+    startGame.addEventListener ('click', function(){
+        welcomingModal.hide();
+        playGame();
+    });
+
     // Breakdown javaScript
 
     // Set the Initial Variables
