@@ -14,6 +14,7 @@
     let endRound = false;
     let gameWinner = "";
     let limitAccess = false;
+    let endIsGame = false;
     
     // An Array of Arrays will be used to store the current store and access previous round's score 
     let scorePlayerA = scores[round - 1][PlayerA];
@@ -57,10 +58,10 @@
 
 
     function phonicGenerator(){
-if(limitAccess == true) return false
+        if(limitAccess == true) return false
         //Avoid clicking the sounds before answering 
         limitAccess = true;
-console.log(limitAccess, "limit");
+        console.log(limitAccess, "limit");
         // New question
         answerIsSelected = false;
 
@@ -291,20 +292,25 @@ console.log(limitAccess, "limit");
             roundWinner = "Tie";
         }
 
-        // Get the roundWinner span element by its ID
-        let roundWinnerSpan = document.getElementById("roundWinner");
+        //End Game
+        if (round !== 7) {            
+            // Get the roundWinner span element by its ID
+            let roundWinnerSpan = document.getElementById("roundWinner");
 
-        // Update the content of the span with the value of roundWinner
-        roundWinnerSpan.textContent = roundWinner;
+            // Update the content of the span with the value of roundWinner
+            roundWinnerSpan.textContent = roundWinner;
 
-        // Get the modal element by its ID
-        let modal = document.getElementById('staticBackdrop');
+            // Get the modal element by its ID
+            let modal = document.getElementById('staticBackdrop');
 
-        // Create a Bootstrap Modal instance
-        let modalInstance = new bootstrap.Modal(modal);
+            // Create a Bootstrap Modal instance
+            let modalInstance = new bootstrap.Modal(modal);
 
-        // Trigger the modal to show
-        modalInstance.show();
+            // Trigger the modal to show
+            modalInstance.show();
+        } else {
+            endGame();
+        } 
 
         return roundWinner;
     }
@@ -346,8 +352,7 @@ console.log(limitAccess, "limit");
     }
 
     function endGame(){
-
-        if (round == 7){
+        if (endIsGame == true){
 
             //Check if the game reached final round (round 8) annouce the winner
             if (scorePlayerA > scorePlayerB) {
@@ -387,7 +392,6 @@ console.log(limitAccess, "limit");
 
     function playGame(){
 
-        
         //To add animation once the function is loaded  
         addingPlayerAnimation();
 
@@ -415,8 +419,7 @@ console.log(limitAccess, "limit");
                 // soundGenerator.addEventListener("click", phonicGenerator);
             });
         });
-        //End Game
-        endGame(); 
+
     }
 
     document.addEventListener('DOMContentLoaded', function(event) {
@@ -433,15 +436,13 @@ console.log(limitAccess, "limit");
     });
 
     console.log("scorePlayerA"+scorePlayerA);
-    
 
     //About Next Game
     //Condition to check if the "nextRound" was clicked or not
     let nextRound = document.getElementById("nextRound");
-    // console.log("lengthhhhh" + previousPhonic);
-    // if (previousPhonic.length == 6){
     nextRound.addEventListener("click", rounds);
-    // }
+    // console.log("lengthhhhh" + previousPhonic);
+    // if (previousPhonic.length == 6){ }
 
 
     //clear letters/scores OR Simply Refresh It ! 
@@ -449,7 +450,7 @@ console.log(limitAccess, "limit");
       
     //listen to the user click
     // let soundGenerator = document.getElementById("generateSound").addEventListener("click", phonicGenerator)
-    document.getElementById("generateSound").addEventListener("click", phonicGenerator)
+    document.getElementById("generateSound").addEventListener("click", phonicGenerator);
+    
 
-});
-
+    });
