@@ -323,9 +323,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
         function annouceWinner() {
             //compare the scores and annouce the winner 
             if (scorePlayerA > scorePlayerB) {
-                roundWinner = "A";
+                roundWinner = "Player A";
             } else if (scorePlayerA < scorePlayerB) {
-                roundWinner = "B";
+                roundWinner = "Player B";
             } else {
                 roundWinner = "Tie";
             }
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
             let roundWinnerSpan = document.getElementById("roundWinner");
 
             // Update the content of the span with the value of roundWinner
-            roundWinnerSpan.textContent = "Player " + roundWinner;
+            roundWinnerSpan.textContent = roundWinner;
 
             // Get the modal element by its ID
             let modal = document.getElementById('staticBackdrop');
@@ -401,9 +401,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
             //Check if the game reached final round (round 8) annouce the winner
             if (scorePlayerA > scorePlayerB) {
-                gameWinner = "A";
+                gameWinner = "Player A";
             } else if (scorePlayerA < scorePlayerB) {
-                gameWinner = "B";
+                gameWinner = "Player B";
             } else {
                 gameWinner = "Tie";
             }
@@ -412,7 +412,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
             let gameWinnerSpan = document.getElementById("gameWinner");
 
             // Update the content of the span with the value of roundWinner
-            gameWinnerSpan.textContent = "Player " + gameWinner;
+            gameWinnerSpan.textContent = gameWinner;
 
             // Get the modal element by its ID
             let modal = document.getElementById('endGameModal');
