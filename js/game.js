@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     let startGame = document.getElementById("startGame");
     startGame.addEventListener ('click', function(){
         welcomingModal.hide();
+        loadScores();
         playGame();
     });
 
@@ -17,13 +18,31 @@ document.addEventListener('DOMContentLoaded', function(event) {
     let previousPhonic=[];
     let selectedPhonic;
     let correctAnswer=false;
-    let scoreA=0;
-    let scoreB=0;
+    let scores = [[0, 0]];
+    let PlayerA=0;
+    let PlayerB=1;
+    // let scoreA=0;
+    // let scoreB=0;
     let currentPlayer = "A"; // Starting player
     let answerIsSelected = false; 
     let questionNumber=0;
     let roundWinner="";
     let endRound=false;
+    let gameWinner = "";
+    
+    // An Array of Arrays will be used to store the current store and access previous round's score 
+    let scorePlayerA = scores[round - 1][PlayerA];
+    let scorePlayerB = scores[round - 1][PlayerB];
+    console.log("scorePlayerA"+scorePlayerA);
+
+    function loadScores(){
+        // Access the scores containers 
+        let scoreA_Container = document.querySelector(".scoreA");
+        let scoreB_Container = document.querySelector(".scoreB");
+        scoreA_Container.textContent = scorePlayerA;
+        scoreB_Container.textContent = scorePlayerB;
+    }
+
 
     function playGame(){
         // Function to toggle the current player class
@@ -132,8 +151,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         console.log("qn"+questionNumber);
 
 
-
-
         function generateRandomPhonic(obtainKeys) {
             while (true){
                 //Generate random phonic
@@ -206,13 +223,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
         roundNumber();
 
         //About User Input
-
         // wait the letter boxes to be loaded 
         loadLetterChoices();
 
         //add event to check if the user clicked any button 
         document.querySelectorAll('#letters-box .letters').forEach(function(letter){
-            letter.addEventListener('click', checkAnswer)
+        letter.addEventListener('click', checkAnswer)
         });
 
         function checkAnswer(element) {
@@ -248,11 +264,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
                 console.log(correctAnswer);
                 answerIsSelected = true; 
-                scores(correctAnswer);
+                trackingScore(correctAnswer);
 
                 if (previousPhonic.length < 6){
                     endRound==false;
                 } else {
+                    // Add logic to push the current round's score
+                    scores.push([scorePlayerA, scorePlayerB]);
+                    console.log(scores);
                     endRound==true;
                     annouceWinner();
                 }        
@@ -260,38 +279,32 @@ document.addEventListener('DOMContentLoaded', function(event) {
             }
         }
 
-        //About the Scores: 
-        function scores(correctAnswer){
 
-            // Access the scores containers 
-            let scoreA_Container = document.querySelector(".scoreA");
-            let scoreB_Container = document.querySelector(".scoreB");
-            
+
+        //About the Scores: 
+        function trackingScore(correctAnswer){
+
             // Track the player score and after the game ends annouce the winner
             if (previousPhonic.length <= 6){
                 console.log(correctAnswer)
                 if (correctAnswer==true){    
                     if (currentPlayer=="A"){
                         console.log(currentPlayer);
-                        scoreA+=1;
+                        scorePlayerA+=1;
+                        console.log(scorePlayerA);
                     }
                     else {
                         console.log(currentPlayer);
-                        scoreB+=1;
+                        scorePlayerB+=1;
                     }
                 }
-            }
+            } 
 
             // Instantly Display the Scores
-            scoreA_Container.textContent = scoreA;
-            scoreB_Container.textContent = scoreB;
+            loadScores();
 
             // Switch to the other player
             currentPlayer = switchPlayer(currentPlayer);
-
-            // Store the previous round's score 
-            // Add logic to add the previous round's score
-
 
         }    
 
@@ -309,9 +322,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
         
         function annouceWinner() {
             //compare the scores and annouce the winner 
-            if (scoreA > scoreB) {
+            if (scorePlayerA > scorePlayerB) {
                 roundWinner = "A";
-            } else if (scoreA < scoreB) {
+            } else if (scorePlayerA < scorePlayerB) {
                 roundWinner = "B";
             } else {
                 roundWinner = "Tie";
@@ -341,9 +354,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
         function resetGame(){
             window.location.reload();
         }
+
+        endGame(); 
     }
 
+
     //About Next Game
+
+    //Condition to check if the "nextRound" was clicked or not
     const nextRound = document.getElementById("nextRound");
     nextRound.addEventListener("click", rounds);
     console.log(round);
@@ -351,8 +369,63 @@ document.addEventListener('DOMContentLoaded', function(event) {
     function rounds(){
         //Increment the round number 
         round += 1;
+
+        //reset all the global variables 
+        previousPhonic = [];
+        selectedPhonic;
+        correctAnswer = false;
+        currentPlayer = "A";
+        answerIsSelected = false;
+        questionNumber = 0;
+        roundWinner = "";
+        endRound = false;
+
+        //Clear the page
+        let roundNumber = document.querySelector("#roundNumber h3");
+        let lettersBox = document.getElementById("letters-box");
+
+        // Clear the existing content of the trialcontainer
+        roundNumber.innerHTML = "";
+        lettersBox.innerHTML = "";
+
+        //call game function
         playGame();
-        console.log(round);
+        console.log(round);    
     }
+
+    function endGame(){
+        if (round == 7){
+        
+        //Check if the game reached final round (round 8) annouce the winner
+        if (scorePlayerA > scorePlayerB) {
+            gameWinner = "A";
+        } else if (scorePlayerA < scorePlayerB) {
+            gameWinner = "B";
+        } else {
+            gameWinner = "Tie";
+        }
+
+        // Get the roundWinner span element by its ID
+        let gameWinnerSpan = document.getElementById("gameWinner");
+
+        // Update the content of the span with the value of roundWinner
+        gameWinnerSpan.textContent = "Player " + gameWinner;
+
+        // Get the modal element by its ID
+        let modal = document.getElementById('endGameModal');
+
+        // Create a Bootstrap Modal instance
+        let modalInstance = new bootstrap.Modal(modal);
+
+        // Trigger the modal to show
+        modalInstance.show();
+        
+        //Restart the game if the users reached final round (round 8)
+        let restart = document.getElementById("restartGame");
+        // window.location.reload();
+        } 
+    }
+
+    
 
 });
