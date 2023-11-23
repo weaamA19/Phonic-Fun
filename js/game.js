@@ -57,12 +57,10 @@
 
 
     function phonicGenerator(){
-
+if(limitAccess == true) return false
         //Avoid clicking the sounds before answering 
-        if(limitAccess == true) return false
         limitAccess = true;
-        console.log(limitAccess, "limit");
-        
+console.log(limitAccess, "limit");
         // New question
         answerIsSelected = false;
 
@@ -440,24 +438,18 @@
     //About Next Game
     //Condition to check if the "nextRound" was clicked or not
     let nextRound = document.getElementById("nextRound");
-    console.log("lengthhhhh" + previousPhonic);
-    if (previousPhonic.length == 6){
+    // console.log("lengthhhhh" + previousPhonic);
+    // if (previousPhonic.length == 6){
     nextRound.addEventListener("click", rounds);
-    }
+    // }
 
 
     //clear letters/scores OR Simply Refresh It ! 
     document.getElementById("resetGame").addEventListener("click", resetGame);
       
+    //listen to the user click
     // let soundGenerator = document.getElementById("generateSound").addEventListener("click", phonicGenerator)
     document.getElementById("generateSound").addEventListener("click", phonicGenerator)
-    //listen to the user click
-    // if (limitAccess==true) {
-    //     soundGenerator.removeEventListener('click', phonicGenerator); 
-    // } else {
-    //     soundGenerator.addEventListener("click", phonicGenerator);
-    // }
-
 
 });
 
