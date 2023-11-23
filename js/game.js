@@ -28,7 +28,7 @@
         scoreA_Container.textContent = scorePlayerA;
         scoreB_Container.textContent = scorePlayerB;
     }
-
+    // Function to toggle the current player class
     function addingPlayerAnimation () {
         console.log("cp="+currentPlayer)
         if (currentPlayer == "A"){
@@ -221,7 +221,7 @@
             console.log(correctAnswer);
             answerIsSelected = true; 
             trackingScore(correctAnswer);
-console.log("prePhon: " + previousPhonic.length)
+            console.log("prePhon: " + previousPhonic.length)
             if (previousPhonic.length < 6){
                 endRound==false;
             } else {
@@ -382,16 +382,12 @@ console.log("prePhon: " + previousPhonic.length)
     }
 
     function playGame(){
-        // Function to toggle the current player class
-        
 
         //To add animation once the function is loaded  
         addingPlayerAnimation();
 
         //Display the initial value of the Question Numbers
-        numberQuestion()
-
-        
+        numberQuestion();
 
         //About the Sounds:
 
@@ -411,13 +407,16 @@ console.log("prePhon: " + previousPhonic.length)
 
         //add event to check if the user clicked any button 
         document.querySelectorAll('#letters-box .letters').forEach(function(letter){
-        letter.addEventListener('click', checkAnswer)
+            letter.addEventListener('click', function (){
+                document.getElementById("generateSound").disabled = false;
+                checkAnswer();
+            });
         });
-        //About Game Reset 
-        
 
+        //End Game
         endGame(); 
     }
+
 
 
 
@@ -450,10 +449,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
     document.getElementById("resetGame").addEventListener("click", resetGame);
         
 
-        //listen to the user click
-        const soundGenerator = document.getElementById("generateSound");
-        soundGenerator.addEventListener("click", phonicGenerator);
+    //listen to the user click
+    const soundGenerator = document.getElementById("generateSound");
+    soundGenerator.addEventListener("click", function (){
+        document.getElementById("generateSound").disabled = true;
+        phonicGenerator();
+    });
 
 
 });
-
