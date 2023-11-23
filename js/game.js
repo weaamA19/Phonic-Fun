@@ -381,13 +381,15 @@ document.addEventListener('DOMContentLoaded', function(event) {
             roundWinner = "";
             endRound = false;
 
-            //Clear the page
+            //Clear the data displayed in the page
             let roundNumber = document.querySelector("#roundNumber h3");
             let lettersBox = document.getElementById("letters-box");
+            let trialcontainer = document.querySelector("#questionNumber h4");
 
             // Clear the existing content of the trialcontainer
             roundNumber.innerHTML = "";
             lettersBox.innerHTML = "";
+            trialcontainer.innerHTML = "";
 
             //call game function
             playGame();
