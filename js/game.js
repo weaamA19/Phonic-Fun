@@ -12,7 +12,6 @@
     let questionNumber=0;
     let roundWinner="";
     let endRound = false;
-    let gameWinner = "";
     let limitAccess = false;
     let endIsGame = false;
     
@@ -293,7 +292,7 @@
         }
 
         //End Game
-        if (round !== 7) {            
+        if (round < 7) {            
             // Get the roundWinner span element by its ID
             let roundWinnerSpan = document.getElementById("roundWinner");
 
@@ -308,8 +307,32 @@
 
             // Trigger the modal to show
             modalInstance.show();
+
         } else {
-            endGame();
+
+            // Get the roundWinner span element by its ID
+            let gameWinnerSpan = document.getElementById("gameWinner");
+
+            // Update the content of the span with the value of roundWinner
+            gameWinnerSpan.textContent = roundWinner;
+
+            // Get the modal element by its ID
+            let modal = document.getElementById('endGameModal');
+
+            // Create a Bootstrap Modal instance
+            let modalInstance = new bootstrap.Modal(modal);
+
+            // Trigger the modal to show
+            modalInstance.show();
+            
+            //Restart the game if the users reached final round (round 8)
+            let restart = document.getElementById("restartGame");
+            
+            // Add click event listener to the restartGame button
+            restart.addEventListener('click', function() {
+                // Reload the page
+                location.reload();
+            });
         } 
 
         return roundWinner;
@@ -349,45 +372,6 @@
             playGame();
             console.log(round);
         }    
-    }
-
-    function endGame(){
-        if (endIsGame == true){
-
-            //Check if the game reached final round (round 8) annouce the winner
-            if (scorePlayerA > scorePlayerB) {
-                gameWinner = "Player A";
-            } else if (scorePlayerA < scorePlayerB) {
-                gameWinner = "Player B";
-            } else {
-                gameWinner = "Tie";
-            }
-
-            // Get the roundWinner span element by its ID
-            let gameWinnerSpan = document.getElementById("gameWinner");
-
-            // Update the content of the span with the value of roundWinner
-            gameWinnerSpan.textContent = gameWinner;
-
-            // Get the modal element by its ID
-            let modal = document.getElementById('endGameModal');
-
-            // Create a Bootstrap Modal instance
-            let modalInstance = new bootstrap.Modal(modal);
-
-            // Trigger the modal to show
-            modalInstance.show();
-            
-            //Restart the game if the users reached final round (round 8)
-            let restart = document.getElementById("restartGame");
-            
-            // Add click event listener to the restartGame button
-            restart.addEventListener('click', function() {
-                // Reload the page
-                location.reload();
-            });
-        }
-
     }
 
     function playGame(){
