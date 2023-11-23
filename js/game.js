@@ -367,63 +367,72 @@ document.addEventListener('DOMContentLoaded', function(event) {
     console.log(round);
 
     function rounds(){
-        //Increment the round number 
-        round += 1;
+        if (round < 8){
+            //Increment the round number 
+            round += 1;
 
-        //reset all the global variables 
-        previousPhonic = [];
-        selectedPhonic;
-        correctAnswer = false;
-        currentPlayer = "A";
-        answerIsSelected = false;
-        questionNumber = 0;
-        roundWinner = "";
-        endRound = false;
+            //reset all the global variables 
+            previousPhonic = [];
+            selectedPhonic;
+            correctAnswer = false;
+            currentPlayer = "A";
+            answerIsSelected = false;
+            questionNumber = 0;
+            roundWinner = "";
+            endRound = false;
 
-        //Clear the page
-        let roundNumber = document.querySelector("#roundNumber h3");
-        let lettersBox = document.getElementById("letters-box");
+            //Clear the page
+            let roundNumber = document.querySelector("#roundNumber h3");
+            let lettersBox = document.getElementById("letters-box");
 
-        // Clear the existing content of the trialcontainer
-        roundNumber.innerHTML = "";
-        lettersBox.innerHTML = "";
+            // Clear the existing content of the trialcontainer
+            roundNumber.innerHTML = "";
+            lettersBox.innerHTML = "";
 
-        //call game function
-        playGame();
-        console.log(round);    
+            //call game function
+            playGame();
+            console.log(round);
+        }    
     }
 
     function endGame(){
+
         if (round == 7){
-        
-        //Check if the game reached final round (round 8) annouce the winner
-        if (scorePlayerA > scorePlayerB) {
-            gameWinner = "A";
-        } else if (scorePlayerA < scorePlayerB) {
-            gameWinner = "B";
-        } else {
-            gameWinner = "Tie";
+
+            //Check if the game reached final round (round 8) annouce the winner
+            if (scorePlayerA > scorePlayerB) {
+                gameWinner = "A";
+            } else if (scorePlayerA < scorePlayerB) {
+                gameWinner = "B";
+            } else {
+                gameWinner = "Tie";
+            }
+
+            // Get the roundWinner span element by its ID
+            let gameWinnerSpan = document.getElementById("gameWinner");
+
+            // Update the content of the span with the value of roundWinner
+            gameWinnerSpan.textContent = "Player " + gameWinner;
+
+            // Get the modal element by its ID
+            let modal = document.getElementById('endGameModal');
+
+            // Create a Bootstrap Modal instance
+            let modalInstance = new bootstrap.Modal(modal);
+
+            // Trigger the modal to show
+            modalInstance.show();
+            
+            //Restart the game if the users reached final round (round 8)
+            let restart = document.getElementById("restartGame");
+            
+            // Add click event listener to the restartGame button
+            restart.addEventListener('click', function() {
+                // Reload the page
+                location.reload();
+            });
         }
 
-        // Get the roundWinner span element by its ID
-        let gameWinnerSpan = document.getElementById("gameWinner");
-
-        // Update the content of the span with the value of roundWinner
-        gameWinnerSpan.textContent = "Player " + gameWinner;
-
-        // Get the modal element by its ID
-        let modal = document.getElementById('endGameModal');
-
-        // Create a Bootstrap Modal instance
-        let modalInstance = new bootstrap.Modal(modal);
-
-        // Trigger the modal to show
-        modalInstance.show();
-        
-        //Restart the game if the users reached final round (round 8)
-        let restart = document.getElementById("restartGame");
-        // window.location.reload();
-        } 
     }
 
     
