@@ -11,8 +11,9 @@
     let answerIsSelected = false; 
     let questionNumber=0;
     let roundWinner="";
-    let endRound=false;
+    let endRound = false;
     let gameWinner = "";
+    let limitAccess = false;
     
     // An Array of Arrays will be used to store the current store and access previous round's score 
     let scorePlayerA = scores[round - 1][PlayerA];
@@ -28,7 +29,7 @@
         scoreA_Container.textContent = scorePlayerA;
         scoreB_Container.textContent = scorePlayerB;
     }
-    // Function to toggle the current player class
+
     function addingPlayerAnimation () {
         console.log("cp="+currentPlayer)
         if (currentPlayer == "A"){
@@ -56,6 +57,12 @@
 
 
     function phonicGenerator(){
+
+        //Avoid clicking the sounds before answering 
+        if(limitAccess == true) return false
+        limitAccess = true;
+        console.log(limitAccess, "limit");
+        
         // New question
         answerIsSelected = false;
 
@@ -113,7 +120,6 @@
         //Display Question Number
         numberQuestion();
         
-
     }
 
 
@@ -383,44 +389,39 @@
 
     function playGame(){
 
+        
         //To add animation once the function is loaded  
         addingPlayerAnimation();
 
         //Display the initial value of the Question Numbers
-        numberQuestion();
-
-        //About the Sounds:
+        numberQuestion()
 
         console.log("qn"+questionNumber);
         console.log("qn"+questionNumber);
-
 
         console.log(previousPhonic.length);
 
         //Displaying the round number
-        
         roundNumber();
 
         //About User Input
         // wait the letter boxes to be loaded 
         loadLetterChoices();
 
+        
         //add event to check if the user clicked any button 
         document.querySelectorAll('#letters-box .letters').forEach(function(letter){
-            letter.addEventListener('click', function (){
-                document.getElementById("generateSound").disabled = false;
-                checkAnswer();
+            letter.addEventListener('click', function (e) {
+                limitAccess=false;
+                checkAnswer(e);
+                // soundGenerator.addEventListener("click", phonicGenerator);
             });
         });
-
         //End Game
         endGame(); 
     }
 
-
-
-
-document.addEventListener('DOMContentLoaded', function(event) {
+    document.addEventListener('DOMContentLoaded', function(event) {
 
     //Uitlizing Modal to: 1- Welcome User 2-Call the playGame function
     let welcomingModal = new bootstrap.Modal(document.getElementById("welcomingModal"));
@@ -433,28 +434,30 @@ document.addEventListener('DOMContentLoaded', function(event) {
         playGame();
     });
 
-    // Breakdown javaScript
-
     console.log("scorePlayerA"+scorePlayerA);
     
 
     //About Next Game
     //Condition to check if the "nextRound" was clicked or not
-    const nextRound = document.getElementById("nextRound");
+    let nextRound = document.getElementById("nextRound");
+    console.log("lengthhhhh" + previousPhonic);
+    if (previousPhonic.length == 6){
     nextRound.addEventListener("click", rounds);
-    console.log(round);
+    }
 
 
     //clear letters/scores OR Simply Refresh It ! 
     document.getElementById("resetGame").addEventListener("click", resetGame);
-        
-
+      
+    // let soundGenerator = document.getElementById("generateSound").addEventListener("click", phonicGenerator)
+    document.getElementById("generateSound").addEventListener("click", phonicGenerator)
     //listen to the user click
-    const soundGenerator = document.getElementById("generateSound");
-    soundGenerator.addEventListener("click", function (){
-        document.getElementById("generateSound").disabled = true;
-        phonicGenerator();
-    });
+    // if (limitAccess==true) {
+    //     soundGenerator.removeEventListener('click', phonicGenerator); 
+    // } else {
+    //     soundGenerator.addEventListener("click", phonicGenerator);
+    // }
 
 
 });
+
