@@ -1,3 +1,18 @@
+h1 {
+    font-family:'Candice';
+    color: blue;
+    font-size: 120px;
+    font-weight: 600px;
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #c9ff00, 0 0 10px #c9ff00, 0 0 10px #c9ff00, 0 0 20px #c9ff00, 0 0 30px #c9ff00;
+}
+
+#header-container {
+height: 100px;
+text-align: center;
+margin: 0 auto;
+padding:10px;
+}
+
 #letters-box{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -9,11 +24,44 @@
     padding: 20px;
     width: 100px;
     height: 100px; 
+    border-radius: 10px; /* Add curved edges */
+    box-shadow: 0 0 10px #00bfff; /* Add a neon glow effect */
 
 }
 
+    .letters:nth-child(1) {
+        background-color: #ff0000; /* Set different colors for each letter box */
+    }
+    
+    .letters:nth-child(2) {
+        background-color: #00ff00;
+    }
+    
+    .letters:nth-child(3) {
+        background-color: #ffff00;
+    }
+
+    .letters:nth-child(4) {
+        background-color: #0000ff;
+    }
+
+    .letters:nth-child(5) {
+        background-color: #ff00ff;
+    }
+
+    .letters:nth-child(6) {
+        background-color: #00ffff;
+    }
+
+
+    #letters-box div {
+                font-size: 24px; /* Increase the font size */
+        font-weight: bold; /* Make the text bold */
+    }
+
 .container{
     text-align:center;
+
 }
 
 div.letters, #nextRound, #resetGame{
@@ -34,19 +82,25 @@ body{
     flex-direction: column;
     justify-content: center;
     /* align-items: center; */
-    margin-top: 50px;
-    margin-bottom: 50px;
+    /* margin: 20px;
+    margin-bottom: 50px; */
+    background-image: url('../img/pagebackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .row {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 
 #letters-box {
-        display: flex;
-        justify-content: center;
-        padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    border-radius: 10px; /* Add curved edges */
+    overflow: hidden; /* Hide overflowing elements */
 }
 
 #scoresletter div{
@@ -82,4 +136,9 @@ audio{
     justify-content: center;
     align-items: center;
     height: 100%;
+}
+
+#slogan{
+    margin-top: 25px;
+    display:block;
 }
