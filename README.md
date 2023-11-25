@@ -1,5 +1,7 @@
 # Phonic-Fun
 
+![Image Description](https://example.com/path/to/image.jpg)
+
 ## "Phonic Fun" Game Instructions:
 
 ### Audience:
