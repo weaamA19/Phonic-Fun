@@ -72,8 +72,11 @@ Enjoy playing "Phonic Fun" and have fun while improving your English phonics ski
 
 ## Data Collected
 
-The data was obtained from the folloiwng source:
-https://www.jollylearning.co.uk/resource-bank/learn-the-letter-sounds/
+- All the phonic sounds were obtained from the folloiwng source:
+  https://www.jollylearning.co.uk/resource-bank/learn-the-letter-sounds/
+
+- All the sounds effects were obtained from the folloiwng source:
+  https://pixabay.com/sound-effects/
 
 ## Technologies Used
 
