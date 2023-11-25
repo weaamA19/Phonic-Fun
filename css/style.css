@@ -1,67 +1,51 @@
 h1 {
     font-family:'Candice';
-    color: blue;
+    color: #00bfff;
     font-size: 120px;
     font-weight: 600px;
-    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #c9ff00, 0 0 10px #c9ff00, 0 0 10px #c9ff00, 0 0 20px #c9ff00, 0 0 30px #c9ff00;
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #FFE4C4, 0 0 10px #FFE4C4, 0 0 10px #FFE4C4, 0 0 20px #FFE4C4, 0 0 30px #FFE4C4;
 }
 
 #header-container {
 height: 100px;
 text-align: center;
-margin: 0 auto;
+margin: 15px auto;
 padding:10px;
 }
 
-#letters-box{
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 10px;
-}
+/* #letters-box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+} */
 
 .letters {
-    background-color: #f0f0f0;
-    padding: 20px;
-    width: 100px;
-    height: 100px; 
+    background-color: #FFE4C4;
+    padding: 5px;
+    width: 80px;
+    height: 80px; 
     border-radius: 10px; /* Add curved edges */
     box-shadow: 0 0 10px #00bfff; /* Add a neon glow effect */
+    border: 2px solid #00bfff;
+
 
 }
 
-    .letters:nth-child(1) {
-        background-color: #ff0000; /* Set different colors for each letter box */
-    }
-    
-    .letters:nth-child(2) {
-        background-color: #00ff00;
-    }
-    
-    .letters:nth-child(3) {
-        background-color: #ffff00;
-    }
-
-    .letters:nth-child(4) {
-        background-color: #0000ff;
-    }
-
-    .letters:nth-child(5) {
-        background-color: #ff00ff;
-    }
-
-    .letters:nth-child(6) {
-        background-color: #00ffff;
-    }
+div#letters-box.col-md-10.offset-md-1{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+}
 
 
-    #letters-box div {
-                font-size: 24px; /* Increase the font size */
-        font-weight: bold; /* Make the text bold */
-    }
+
+#letters-box div {
+   font-size: 24px; /* Increase the font size */
+    font-weight: bold; /* Make the text bold */
+}
 
 .container{
-    text-align:center;
-
+    text-align: center;
 }
 
 div.letters, #nextRound, #resetGame{
@@ -91,7 +75,7 @@ body{
 }
 
 .row {
-    margin-bottom: 10px;
+    margin-bottom:15px;
 }
 
 
@@ -111,25 +95,19 @@ audio{
     display:none;
 }
 
-.currentPlayer {
-    /* Define styles for the current player's div */
-    background-color: yellow;
-    animation-name: pop;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-}
-
-@keyframes pop {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-    100% {
-      transform: scale(1);
-    }
-}
+#section-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #randomSound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
 
 .modal-dialog {
     display: flex;
@@ -141,4 +119,90 @@ audio{
 #slogan{
     margin-top: 25px;
     display:block;
+}
+
+#resetGame, #nextRound {
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 30px;
+    background-color:#FFE4C4;
+    border: 2px solid #00bfff;
+    box-shadow: 0 0 10px #00bfff;
+    /* margin: 5px auto; */
+    text-align: center;
+}
+
+.button-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically center align the items */
+}
+  
+.button-box div {
+    margin-top: 25px;
+    margin-right: 10px; /* Adjust the spacing as per your preference */
+}
+
+/* #randomSound{
+    max-width:150px;
+    border-radius: 5px;
+    background-color:#FFE4C4;
+    border: 2px solid #00bfff;
+    box-shadow: 0 0 10px #00bfff;
+} */
+
+/* #generateSound{
+    width: 50px;
+    height: 50px;
+} */
+
+.scoreA, .scoreB {
+    /* width: 100px;
+    height: 100px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif; /* Replace with the desired font family */
+    font-size: 24px;
+}
+
+#playerA, #playerB {
+    max-width: 400px;
+    max-height: 400px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif; /* Replace with the desired font family */
+    font-size: 24px;
+    border: 2px solid #00bfff;
+    border-radius: 30px;
+    box-shadow: 0 0 10px #00bfff;
+    background-color:#FFE4C4;
+}
+
+.currentPlayer {
+    /* Define styles for the current player's div */
+    color:white !important;
+    border: 2px solid white !important;
+    border-radius: 30px;
+    box-shadow: 0 0 10px white !important;
+    background-color:#00bfff !important;
+    /* background-color: rgb(0, 255, 208); */
+    animation-name: pop;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-delay: 0.5s; /* Adjust the delay as needed */
+  }
+  
+  @keyframes pop {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
 }
