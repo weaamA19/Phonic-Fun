@@ -1,6 +1,6 @@
 # Phonic-Fun
 
-![Image Description](https://example.com/path/to/image.jpg)
+![Image Description](https://github.com/weaamA19/Phonic-Fun/blob/main/img/display.png)
 
 ## "Phonic Fun" Game Instructions:
 
