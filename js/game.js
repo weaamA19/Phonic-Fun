@@ -193,6 +193,11 @@
     
     function checkAnswer(element) {
         if(answerIsSelected==false){
+
+            //Stop the phonic sound if its still did not finish playing 
+            const audioElement = document.getElementById('audioContainer');
+            audioElement.pause();
+
             //Get the content of the object clicked on
             let clickedContent = element.target.textContent;
             console.log(clickedContent); 
@@ -215,11 +220,40 @@
 
             if (clickedContent == correctAnswer) {
             correctAnswer=true;
-            console.log(currentPlayer);
+            // console.log(currentPlayer);
+
+            //Play Cheering Sound
+            // Get the the audio element
+            let  cheeringSound = document.getElementById('audioAnswer');
+
+            //Define the Sound Path
+            let Path= 'img/correctAnswer.mp3';
+
+            // Set attributes and properties
+            cheeringSound.src = Path; // Set the audio source
+            cheeringSound.controls = true;  // Enable the audio controls (play)
+            
+            // Play the audio
+            cheeringSound.play();
 
             } else {
                 correctAnswer=false;
-                console.log(currentPlayer);
+                // console.log(currentPlayer);
+                
+                //Play Cheering Sound
+                // Get the the audio element
+                let  cheeringSound = document.getElementById('audioAnswer');
+
+                //Define the Sound Path
+                let Path= 'img/wrongAnswer.mp3';
+
+                // Set attributes and properties
+                cheeringSound.src = Path; // Set the audio source
+                cheeringSound.controls = true;  // Enable the audio controls (play)
+                
+                // Play the audio
+                cheeringSound.play();
+
             }
 
             console.log(correctAnswer);
@@ -437,4 +471,5 @@
     document.getElementById("generateSound").addEventListener("click", phonicGenerator);
     
 
-    });
+    
+});
