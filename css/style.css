@@ -1,9 +1,10 @@
 h1 {
-    font-family:'Candice';
+    font-family: 'Playfair Display', serif;
     color: #00bfff;
     font-size: 120px;
-    font-weight: 600px;
+    font-weight: 900px;
     text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #FFE4C4, 0 0 10px #FFE4C4, 0 0 10px #FFE4C4, 0 0 20px #FFE4C4, 0 0 30px #FFE4C4;
+    font-style: italic;
 }
 
 #header-container {
@@ -13,11 +14,22 @@ margin: 15px auto;
 padding:10px;
 }
 
-/* #letters-box{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-} */
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600px;
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #FFE4C4, 0 0 10px #FFE4C4, 0 0 10px #FFE4C4, 0 0 20px #FFE4C4, 0 0 30px #FFE4C4;
+    color: #00bfff;
+    font-size: 25px;
+}
+
+h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900px;
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #00bfff, 0 0 10px #00bfff, 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff;
+    color: #121212;
+    font-size: 40px;  
+}
+
 
 .letters {
     background-color: #FFE4C4;
@@ -27,7 +39,7 @@ padding:10px;
     border-radius: 10px; /* Add curved edges */
     box-shadow: 0 0 10px #00bfff; /* Add a neon glow effect */
     border: 2px solid #00bfff;
-
+    color: #00bfff;
 
 }
 
@@ -106,8 +118,7 @@ audio{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  
+}
 
 .modal-dialog {
     display: flex;
@@ -132,6 +143,7 @@ audio{
     box-shadow: 0 0 10px #00bfff;
     /* margin: 5px auto; */
     text-align: center;
+    color: #00bfff;
 }
 
 .button-box {
@@ -145,19 +157,6 @@ audio{
     margin-right: 10px; /* Adjust the spacing as per your preference */
 }
 
-/* #randomSound{
-    max-width:150px;
-    border-radius: 5px;
-    background-color:#FFE4C4;
-    border: 2px solid #00bfff;
-    box-shadow: 0 0 10px #00bfff;
-} */
-
-/* #generateSound{
-    width: 50px;
-    height: 50px;
-} */
-
 .scoreA, .scoreB {
     /* width: 100px;
     height: 100px; */
@@ -167,6 +166,7 @@ audio{
     font-weight: bold;
     font-family: 'Arial', sans-serif; /* Replace with the desired font family */
     font-size: 24px;
+    
 }
 
 #playerA, #playerB {
@@ -179,6 +179,8 @@ audio{
     border-radius: 30px;
     box-shadow: 0 0 10px #00bfff;
     background-color:#FFE4C4;
+    padding: 15px;
+    color: #00bfff;
 }
 
 .currentPlayer {
