@@ -36,6 +36,7 @@ This game is designed for individuals who wants to learn how to read English and
 
    - After listening to the phonic sound, a user must select the correct corresponding letter from the available options.
    - Choose the letter that represents the sound you heard correctly.
+   - Note: A restriction is implemented to prevent users from selecting multiple answers concurrently.
 
 4. Earning Points:
 
