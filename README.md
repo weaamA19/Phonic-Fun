@@ -85,6 +85,9 @@ Enjoy playing "Phonic Fun" and have fun while improving your English phonics ski
 - All the sounds effects were obtained from the folloiwng source:
   https://pixabay.com/sound-effects/
 
+- The background was generated using the following AI Generative tool:
+  https://wepik.com/
+
 ## Technologies Used
 
 - Built with HTML, CSS, JavaScript.
