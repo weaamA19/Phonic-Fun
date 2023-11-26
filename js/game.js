@@ -427,12 +427,12 @@
             // lettersBox.innerHTML = "";
             trialcontainer.innerHTML = "";
 
-            //clearing the letter 
+            //clearing the letters' div
             let removeLetters = document.getElementById("letters-box");
             while (removeLetters.hasChildNodes()) {
                 removeLetters.removeChild(removeLetters.firstChild);
             }
-            
+
 
             //call game function
             playGame();

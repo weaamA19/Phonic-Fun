@@ -113,3 +113,5 @@ Useful Resources:
 3. Randomise Elements:https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-javascript/
 
 4. Bootstrap: https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+5. Solving InnerHTML Error for removing the letters' div:https://stackoverflow.com/questions/5057759/how-do-i-clear-the-contents-of-a-div-without-innerhtml
