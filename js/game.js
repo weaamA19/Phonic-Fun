@@ -20,6 +20,7 @@
     let scorePlayerB = scores[round - 1][PlayerB];
     let playerADiv = document.querySelector("#playerA");
     let playerBDiv = document.querySelector("#playerB");
+    const Path= 'img/wrongAnswer.mp3';
 
 
     // -------------------------------------Functions Section----------------------------------- //
@@ -262,7 +263,6 @@
                 let  cheeringSound = document.getElementById('audioAnswer');
 
                 //Define the Sound Path
-                let Path= 'img/wrongAnswer.mp3';
 
                 // Set attributes and properties
                 cheeringSound.src = Path; // Set the audio source
@@ -424,8 +424,15 @@
 
             // Clear the existing content of the trialcontainer
             roundNumber.innerHTML = "";
-            lettersBox.innerHTML = "";
+            // lettersBox.innerHTML = "";
             trialcontainer.innerHTML = "";
+
+            //clearing the letter 
+            let removeLetters = document.getElementById("letters-box");
+            while (removeLetters.hasChildNodes()) {
+                removeLetters.removeChild(removeLetters.firstChild);
+            }
+            
 
             //call game function
             playGame();
