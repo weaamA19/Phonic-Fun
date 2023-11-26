@@ -27,7 +27,7 @@ This game is designed for individuals who wants to learn how to read English and
 
 1. Initiating the game:
 
-   - Nevigate to the following site:
+   - Nevigate to the following site:https://weaama19.github.io/Phonic-Fun/
    - To initiate the game, users should click on the "Start Playing" button after the page is loaded.
 
 2. Clicking on the "Sound" Image:
