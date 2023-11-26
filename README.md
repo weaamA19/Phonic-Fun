@@ -2,6 +2,10 @@
 
 ![Image Description](https://github.com/weaamA19/Phonic-Fun/blob/main/img/display.png)
 
+## Game Concept
+
+"Phonic Fun" is an engaging and educational game designed for individuals who want to learn how to read English and improve their phonics skills. The game is played between two players, Player A and Player B, in a series of 7 rounds. Each round presents a unique set of phonic sounds and letters for players to work with. The objective is to listen to the phonic sound played and select the correct corresponding letter from the options provided. Players earn points for selecting the correct answer, with a maximum of 3 points available per round. At the end of each round, a winner is announced based on the highest score. The game interface provides clear instructions and options for resetting the game or progressing to the next round. "Phonic Fun" is a fun and interactive way to practice phonics and enhance reading skills.
+
 ## "Phonic Fun" Game Instructions:
 
 ### Audience:
